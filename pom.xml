@@ -170,27 +170,27 @@
         <version>${org.eclipse.jetty.jetty-maven-plugin.version}</version>
       </plugin>
       
-<!--      <plugin>-->
-<!--        <groupId>org.apache.maven.plugins</groupId>-->
-<!--        <artifactId>maven-pmd-plugin</artifactId>-->
-<!--        <version>3.21.2</version> &lt;!&ndash; or use version from pluginManagement &ndash;&gt;-->
-<!--        <configuration>-->
-<!--          &lt;!&ndash; failOnViolation is actually true by default, but can be disabled &ndash;&gt;-->
-<!--          <failOnViolation>false</failOnViolation>-->
-<!--          &lt;!&ndash; printFailingErrors is pretty useful &ndash;&gt;-->
-<!--          <printFailingErrors>true</printFailingErrors>-->
-<!--          <rulesets>-->
-<!--            <ruleset>/mnt/e/practice-answer.xml</ruleset>-->
-<!--          </rulesets>-->
-<!--        </configuration>-->
-<!--        <executions>-->
-<!--          <execution>-->
-<!--            <goals>-->
-<!--              <goal>check</goal>-->
-<!--            </goals>-->
-<!--          </execution>-->
-<!--        </executions>-->
-<!--      </plugin>-->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-pmd-plugin</artifactId>
+        <version>3.21.2</version> <!-- or use version from pluginManagement -->
+        <configuration>
+          <!-- failOnViolation is actually true by default, but can be disabled -->
+          <failOnViolation>false</failOnViolation>
+          <!-- printFailingErrors is pretty useful -->
+          <printFailingErrors>true</printFailingErrors>
+          <rulesets>
+            <ruleset>/mnt/e/practice-answer.xml</ruleset>
+          </rulesets>
+        </configuration>
+        <executions>
+          <execution>
+            <goals>
+              <goal>check</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
     </plugins>
   </build>
 
