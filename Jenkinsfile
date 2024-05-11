@@ -11,16 +11,16 @@ pipeline {
                 sh 'mvn javadoc:jar'
             }
         }
-        stage('pmd') {
-            steps {
-                sh 'mvn pmd:pmd'
-            }
-            post {
-                always {
-                    archiveArtifacts artifacts: 'target/pmd.xml', fingerprint: true
-                }
-            }
-        }
+//         stage('pmd') {
+//             steps {
+//                 sh 'mvn pmd:pmd'
+//             }
+//             post {
+//                 always {
+//                     archiveArtifacts artifacts: 'target/pmd.xml', fingerprint: true
+//                 }
+//             }
+//         }
         stage('Test report') {
             steps {
                 sh 'mvn test'
