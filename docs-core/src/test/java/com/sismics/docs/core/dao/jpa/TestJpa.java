@@ -5,8 +5,13 @@ import com.sismics.docs.core.dao.UserDao;
 import com.sismics.docs.core.model.jpa.User;
 import com.sismics.docs.core.util.TransactionUtil;
 import com.sismics.docs.core.util.authentication.InternalAuthenticationHandler;
+import com.sismics.util.context.ThreadLocalContext;
 import org.junit.Assert;
 import org.junit.Test;
+import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
+import javax.persistence.Query;
+import java.util.*;
 
 /**
  * Tests the persistance layer.
@@ -27,7 +32,19 @@ public class TestJpa extends BaseTransactionalTest {
         String id = userDao.create(user, "me");
         
         TransactionUtil.commit();
+        EntityManager em = ThreadLocalContext.get().getEntityManager();
+        
+        // Get the user
+        Query q = em.createQuery("select u from User u where u.id = :id and u.deleteDate is null");
+        q.setParameter("id", user.getId());
+        User userDb = (User) q.getSingleResult();
 
+        // Update the user (except password)
+        userDb.setEmail(user.getEmail());
+        userDb.setStorageQuota(user.getStorageQuota());
+        userDb.setStorageCurrent(user.getStorageCurrent());
+        userDb.setTotpKey(user.getTotpKey());
+        userDb.setDisableDate(user.getDisableDate());
         // Search a user by his ID
         user = userDao.getById(id);
         Assert.assertNotNull(user);
