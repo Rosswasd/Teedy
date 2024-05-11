@@ -6,11 +6,11 @@ pipeline {
                 sh 'mvn clean -DskipTests install'
             }
         }
-        stage('Doc') {
-            steps {
-                sh 'mvn javadoc:jar'
-            }
-        }
+//         stage('Doc') {
+//             steps {
+//                 sh 'mvn javadoc:jar'
+//             }
+//         }
         stage('pmd') {
             steps {
                 sh 'mvn pmd:pmd'
