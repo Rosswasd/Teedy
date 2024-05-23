@@ -8,6 +8,7 @@ pipeline {
         }
         stage('K8s') {
             steps {
+                sh 'kubectl config use-context minikube'
                 sh 'kubectl set image deployments/hello-node teedy=rosswasd/teedy:v1.0'
             }
         }
