@@ -8,6 +8,7 @@ pipeline {
         }
         stage('K8s') {
             steps {
+                sh 'kubectl config view'
                 sh 'kubectl set image deployments/hello-node rosswasd/teedy:v1.0=teedy2024_jenkins'
             }
         }
