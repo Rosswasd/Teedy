@@ -8,8 +8,10 @@ pipeline {
         }
         stage('K8s') {
             steps {
-                sh 'minikube start'
                 sh 'kubectl config view'
+                sh 'kubectl get deployments'
+                sh 'kubectl get pods'
+                sh 'kubectl get events'
                 sh 'kubectl set image deployments/hello-node rosswasd/teedy:v1.0=teedy2024_jenkins'
             }
         }
