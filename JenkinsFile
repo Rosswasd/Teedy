@@ -8,8 +8,6 @@ pipeline {
         }
         stage('K8s') {
             steps {
-                sh 'minikube start'
-                sh 'kubectl create deployment hello-node --image=rosswasd/teedy:1.0'
                 sh 'kubectl set image deployments/hello-node teedy=rosswasd/teedy:v1.0'
             }
         }
