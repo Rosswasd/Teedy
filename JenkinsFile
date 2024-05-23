@@ -6,30 +6,10 @@ pipeline {
                 sh 'mvn clean -DskipTests install'
             }
         }
-        stage('Doc') {
+        stage('K8s') {
             steps {
-                sh 'mvn javadoc:jar'
+                sh 'kubectl set image deployments/hello-node teedy=rosswasd/teedy:v1.0'
             }
-        }
-        stage('pmd') {
-            steps {
-                sh 'mvn pmd:pmd'
-            }
-        }
-        stage('Test report') {
-            steps {
-                sh 'mvn surefire-report:report'
-            }
-        }
-    }
-
-    post {
-        always {
-            archiveArtifacts artifacts: '**/target/site/**', fingerprint: true
-            archiveArtifacts artifacts: '**/target/**/*.jar', fingerprint: true
-            archiveArtifacts artifacts: '**/target/**/*.war', fingerprint: true
-            archiveArtifacts artifacts: '**/target/pmd.html', fingerprint: true
-            archiveArtifacts artifacts: 'target/site/**', fingerprint: true
         }
     }
 }
